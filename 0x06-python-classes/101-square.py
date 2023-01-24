@@ -7,6 +7,7 @@
     size must be an integer
     Public instance method: def area(self)
     Public instance method: def my_print(self)
+    __str__ same behavior than my_print()
 """
 
 
@@ -52,7 +53,7 @@ class Square:
 
     """prints in stdout the square with the character #"""
     def my_print(self):
-        if self.size:
+        if self.size != 0:
             if self.position[1] is not 0:
                 print('\n' * self.position[1], end='')
             for ch in range(self.size):
@@ -60,3 +61,18 @@ class Square:
                 print('#' * self.size)
         else:
             print()
+
+    """print(square_obj) == square_obj.my_print()"""
+    def __str__(self):
+        to_print = ''
+        if self.size != 0:
+            if self.position[1] is not 0:
+                to_print += '\n' * self.position[1]
+            for ch in range(self.size):
+                to_print += ' ' * self.position[0]
+                to_print += '#' * self.size
+                if ch != self.__size - 1:
+                    to_print += '\n'
+        else:
+            to_print = ''
+        return to_print
